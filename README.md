@@ -1,5 +1,6 @@
 # PythonScraperJobs
 Scrape Jobs on https://www.timesjobs.com/
+required tools :BeautifulSoup, requests, lxml
 
 Scrape jobs from https://www.timesjobs.com/ every 10 minutes
 Files will be saved on Posts Folder
