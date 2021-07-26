@@ -2,12 +2,15 @@ from bs4 import BeautifulSoup
 import requests
 import time
 
+# https://www.timesjobs.com/ URL from search jobs
+url = 'https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation='
+
 print('Put some skill that you are not familiar with')
 unfamiliar_skill = input('>')
 print(f"filtering out {unfamiliar_skill}")
 
 def find_jobs():
-    html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
+    html_text = requests.get(url).text
     soup = BeautifulSoup(html_text, 'lxml')
     jobs = soup.find_all('li', class_="clearfix job-bx wht-shd-bx")
     for index, job in enumerate(jobs):
@@ -22,8 +25,8 @@ def find_jobs():
                     f.write(f"Require Skills: {skills.strip()} \n")
                     f.write(f"More Info: {more_info} \n")
                 print(f'File saved: {index}')
-      
-            
+
+
 # Run script every 10 minutes
 if __name__ == '__main__':
     while True:
